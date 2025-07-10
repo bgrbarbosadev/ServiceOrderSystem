@@ -1,0 +1,42 @@
+# application.yml
+server:
+  port: 8765
+
+spring:
+  application:
+    name: sos-gateway
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+ribbon:
+  ConnectTimeout: 10000
+  ReadTimeout: 20000
+zuul:
+  routes:
+    sos-user:
+      service-id: sos-user
+      path: /sos-user/**
+    sos-service:
+      service-id: sos-service
+      path: /sos-service/**
+    sos-customer:
+      service-id: sos-customer
+      path: /sos-customer/**
+    sos-service-order:
+      service-id: sos-service-order
+      path: /sos-service-order/**
+    sos-oauth:
+      service-id: sos-oauth
+      path: /sos-oauth/**
+      sensitive-headers: Cookie,Set-Cookie
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
