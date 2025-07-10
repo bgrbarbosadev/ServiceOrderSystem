@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9bd074d6-d4cf-49eb-b11a-f55c85e729ef" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../sos-customers/src/main/java/br/com/bgrbarbosa/sos_customers/config/ValidationMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-customers/src/main/java/br/com/bgrbarbosa/sos_customers/controller/CustomerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-customers/src/main/java/br/com/bgrbarbosa/sos_customers/controller/exception/FieldMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-customers/src/main/java/br/com/bgrbarbosa/sos_customers/controller/exception/ResourceExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-customers/src/main/java/br/com/bgrbarbosa/sos_customers/controller/exception/StandardError.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-customers/src/main/java/br/com/bgrbarbosa/sos_customers/controller/exception/ValidationError.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-customers/src/main/java/br/com/bgrbarbosa/sos_customers/controller/exception/dto/ErrorResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-customers/src/main/java/br/com/bgrbarbosa/sos_customers/controller/exception/dto/Errors.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-customers/src/main/java/br/com/bgrbarbosa/sos_customers/controller/mapper/CustomerMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-customers/src/main/java/br/com/bgrbarbosa/sos_customers/model/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-customers/src/main/java/br/com/bgrbarbosa/sos_customers/model/dto/CustomerDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-customers/src/main/java/br/com/bgrbarbosa/sos_customers/repository/CustomerRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-customers/src/main/java/br/com/bgrbarbosa/sos_customers/service/CustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-customers/src/main/java/br/com/bgrbarbosa/sos_customers/service/exception/DatabaseException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-customers/src/main/java/br/com/bgrbarbosa/sos_customers/service/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-customers/src/main/java/br/com/bgrbarbosa/sos_customers/service/exception/UserException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-customers/src/main/java/br/com/bgrbarbosa/sos_customers/service/impl/CustomerServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-customers/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-customers/src/main/resources/message.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-gateway-zull/src/main/java/br/com/bgrbarbosa/sos_gateway_zull/config/AppConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-gateway-zull/src/main/java/br/com/bgrbarbosa/sos_gateway_zull/config/ResourceServerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-oauth/src/main/java/br/com/bgrbarbosa/sos_auth/config/AppConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-oauth/src/main/java/br/com/bgrbarbosa/sos_auth/config/AuthorizationServerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-oauth/src/main/java/br/com/bgrbarbosa/sos_auth/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-oauth/src/main/java/br/com/bgrbarbosa/sos_auth/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-oauth/src/main/java/br/com/bgrbarbosa/sos_auth/services/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-service-discovery/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-services/src/main/java/br/com/bgrbarbosa/sos_services/controller/BusinessServiceController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-services/src/main/java/br/com/bgrbarbosa/sos_services/controller/CategoryController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-services/src/main/java/br/com/bgrbarbosa/sos_services/controller/exception/FieldMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-services/src/main/java/br/com/bgrbarbosa/sos_services/controller/exception/ResourceExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-services/src/main/java/br/com/bgrbarbosa/sos_services/controller/exception/StandardError.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-services/src/main/java/br/com/bgrbarbosa/sos_services/controller/exception/ValidationError.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-services/src/main/java/br/com/bgrbarbosa/sos_services/controller/exception/dto/ErrorResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-services/src/main/java/br/com/bgrbarbosa/sos_services/controller/exception/dto/Errors.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-services/src/main/java/br/com/bgrbarbosa/sos_services/controller/mapper/BusinessServiceMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-services/src/main/java/br/com/bgrbarbosa/sos_services/controller/mapper/CategoryMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-services/src/main/java/br/com/bgrbarbosa/sos_services/model/BusinessService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-services/src/main/java/br/com/bgrbarbosa/sos_services/model/Category.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-services/src/main/java/br/com/bgrbarbosa/sos_services/model/dto/BusinessServiceDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-services/src/main/java/br/com/bgrbarbosa/sos_services/model/dto/CategoryDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-services/src/main/java/br/com/bgrbarbosa/sos_services/repository/CategoryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-services/src/main/java/br/com/bgrbarbosa/sos_services/repository/ServiceOperationsRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-services/src/main/java/br/com/bgrbarbosa/sos_services/service/CategoryService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-services/src/main/java/br/com/bgrbarbosa/sos_services/service/ServiceOperations.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-services/src/main/java/br/com/bgrbarbosa/sos_services/service/exception/DatabaseException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-services/src/main/java/br/com/bgrbarbosa/sos_services/service/exception/EntityException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-services/src/main/java/br/com/bgrbarbosa/sos_services/service/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-services/src/main/java/br/com/bgrbarbosa/sos_services/service/impl/CategoryServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-services/src/main/java/br/com/bgrbarbosa/sos_services/service/impl/ServiceOperationsImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-services/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-user/src/main/java/br/com/bgrbarbosa/sos_user/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-user/src/main/java/br/com/bgrbarbosa/sos_user/controller/exception/FieldMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-user/src/main/java/br/com/bgrbarbosa/sos_user/controller/exception/ResourceExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-user/src/main/java/br/com/bgrbarbosa/sos_user/controller/exception/StandardError.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-user/src/main/java/br/com/bgrbarbosa/sos_user/controller/exception/ValidationError.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-user/src/main/java/br/com/bgrbarbosa/sos_user/controller/exception/dto/ErrorResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-user/src/main/java/br/com/bgrbarbosa/sos_user/controller/exception/dto/Errors.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-user/src/main/java/br/com/bgrbarbosa/sos_user/controller/mapper/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-user/src/main/java/br/com/bgrbarbosa/sos_user/model/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-user/src/main/java/br/com/bgrbarbosa/sos_user/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-user/src/main/java/br/com/bgrbarbosa/sos_user/model/dto/UserDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-user/src/main/java/br/com/bgrbarbosa/sos_user/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-user/src/main/java/br/com/bgrbarbosa/sos_user/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-user/src/main/java/br/com/bgrbarbosa/sos_user/service/exception/DatabaseException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-user/src/main/java/br/com/bgrbarbosa/sos_user/service/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-user/src/main/java/br/com/bgrbarbosa/sos_user/service/exception/UserException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-user/src/main/java/br/com/bgrbarbosa/sos_user/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sos-user/src/main/resources/messages.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sos-user/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sos-user/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sos-user/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../sos-user/src/main/resources/application.yml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "bgrbarbosadev"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/bgrbarbosadev/ServiceOrderSystem.git",
+    "accountId": "2e81ab63-bd58-4a81-bee3-e8d5aeeb5169"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 0
+}]]></component>
+  <component name="ProjectId" id="2xmneERcFhurLkCDLyt8IztAkcw" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "sos-user",
+    "kotlin-language-version-configured": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9bd074d6-d4cf-49eb-b11a-f55c85e729ef" name="Changes" comment="" />
+      <created>1748552210082</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1748552210082</updated>
+    </task>
+    <servers />
+  </component>
+</project>
