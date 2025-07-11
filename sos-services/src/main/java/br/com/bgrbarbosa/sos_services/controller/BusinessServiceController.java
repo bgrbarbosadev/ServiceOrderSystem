@@ -54,8 +54,6 @@ public class BusinessServiceController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") UUID id){
-//        serviceOperations.delete(id);
-//        return ResponseEntity.ok().body("Successfully deleted!!");
         try {
             String orderServiceEurekaName = "SOS-SERVICE-ORDER";
             String checkOrdersUrl = "http://" + orderServiceEurekaName + "/order/orderbyservice/" + id;

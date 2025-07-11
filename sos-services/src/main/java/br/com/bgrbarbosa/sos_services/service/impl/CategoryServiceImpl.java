@@ -1,5 +1,6 @@
 package br.com.bgrbarbosa.sos_services.service.impl;
 
+import br.com.bgrbarbosa.mensages.ValidationMessage;
 import br.com.bgrbarbosa.sos_services.model.Category;
 import br.com.bgrbarbosa.sos_services.repository.CategoryRepository;
 import br.com.bgrbarbosa.sos_services.service.CategoryService;
@@ -24,7 +25,7 @@ public class CategoryServiceImpl implements CategoryService {
     public Category insert(Category category) {
         Category aux = category;
         if (categoryRepository.existsByCategory(category.getCategory())) {
-            throw new EntityException("{entity-exception}");
+            throw new EntityException(ValidationMessage.ENTITY_EXCEPTION);
         }
         return categoryRepository.save(category);
     }
@@ -37,7 +38,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Category findById(UUID id) {
         return categoryRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("ID: " + id));
+                () -> new ResourceNotFoundException(ValidationMessage.RESOURCE_NOT_FOUND + id));
     }
 
     @Override
@@ -48,7 +49,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void delete(UUID id) {
         if (!categoryRepository.existsById(id)) {
-            throw new ResourceNotFoundException("ID not found: " + id);
+            throw new ResourceNotFoundException(ValidationMessage.RESOURCE_NOT_FOUND  + id);
         }
         categoryRepository.deleteById(id);
     }
@@ -56,7 +57,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Category update(Category category) {
         Category aux = categoryRepository.findById(category.getUuid()).orElseThrow(
-                () -> new ResourceNotFoundException("Resource not found!"));
+                () -> new ResourceNotFoundException(ValidationMessage.RESOURCE_NOT_FOUND ));
         aux.setCategory(category.getCategory());
         return categoryRepository.save(aux);
     }

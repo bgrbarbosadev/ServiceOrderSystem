@@ -6,7 +6,7 @@ public class ValidationMessage {
     public static final String NOT_BLANK = "The field cannot be null, empty or blank";
     public static final String NOT_EMPTY = "The field must not be null or empty.";
     public static final String NOT_NULL = "The field cannot be zero.";
-    public static final String RESOURCE_NOT_FOUND = "Resource not found!";
+    public static final String RESOURCE_NOT_FOUND = "Resource not found: ";
     public static final String ILLEGAL_ARGUMENT_EXCEPTION = "Existing Value";
     public static final String INVALID_CPF = "Invalid CPF";
     public static final String FIELD_SIZE_MESSAGE = "Field must contain between {min} and {max} characters";
@@ -17,5 +17,9 @@ public class ValidationMessage {
     public static final String FORBIDEN = "Forbiden";
     public static final String ACCESS_DENIED = "Access denied!";
     public static final String EMAIL_VALID = "Enter a valid email address";
+    public static final String ENTITY_EXCEPTION = "Error Gateway";
+    public static final String ERROR_INSERTING_RECORD = "Error Inserting Record: ";
+    public static final String ERROR_DELETION_RECORD = "Error Inserting Record: ";
+
 
 }

@@ -11,7 +11,7 @@
 	<groupId>br.com.bgrbarbosa</groupId>
 	<artifactId>sos-service-discovery</artifactId>
 	<version>1.0.0</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>sos-service-discovery</name>
 	<description>Service Discovery da Aplicação</description>
 	<url/>
