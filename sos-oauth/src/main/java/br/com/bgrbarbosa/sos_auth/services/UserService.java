@@ -25,7 +25,6 @@ public class UserService implements UserDetailsService {
 			logger.error("Email not found: " + email);
 			throw new IllegalArgumentException("Email not found");
 		}
-		logger.info("Email found: " + email);
 		return user;
 	}
 
@@ -36,7 +35,6 @@ public class UserService implements UserDetailsService {
 			logger.error("Email not found: " + username);
 			throw new UsernameNotFoundException("Email not found");
 		}
-		logger.info("Email found: " + username);
 		return user;
 	}
 }

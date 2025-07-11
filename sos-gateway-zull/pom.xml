@@ -11,7 +11,7 @@
 	<groupId>br.com.bgrbarbosa</groupId>
 	<artifactId>sos-gateway-zull</artifactId>
 	<version>1.0.0</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>sos-gateway-zull</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
@@ -66,6 +66,11 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>br.com.bgrbarbosa</groupId>
+			<artifactId>sos-utils</artifactId>
+			<version>1.0.0</version>
 		</dependency>
 	</dependencies>
 

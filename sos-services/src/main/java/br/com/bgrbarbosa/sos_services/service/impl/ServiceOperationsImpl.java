@@ -1,6 +1,7 @@
 package br.com.bgrbarbosa.sos_services.service.impl;
 
 
+import br.com.bgrbarbosa.mensages.ValidationMessage;
 import br.com.bgrbarbosa.sos_services.infra.UpdateItemServiceOrder;
 import br.com.bgrbarbosa.sos_services.model.BusinessService;
 import br.com.bgrbarbosa.sos_services.repository.ServiceOperationsRepository;
@@ -33,7 +34,7 @@ public class ServiceOperationsImpl implements ServiceOperations {
           result = repository.save(businessService);
           updateItemServiceOrder.updateService(result);
         } catch (Exception e) {
-            throw new Exception("Error publishing record ID: " + result.getUuid());
+            throw new Exception(ValidationMessage.ERROR_INSERTING_RECORD + result.getUuid());
         }
         return result;
     }
@@ -46,7 +47,7 @@ public class ServiceOperationsImpl implements ServiceOperations {
     @Override
     public BusinessService findById(UUID id) {
         return repository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("ID: " + id));
+                () -> new ResourceNotFoundException(ValidationMessage.RESOURCE_NOT_FOUND + id));
     }
 
     @Override
@@ -57,7 +58,7 @@ public class ServiceOperationsImpl implements ServiceOperations {
     @Override
     public void delete(UUID id) throws Exception {
         if (!repository.existsById(id)) {
-            throw new ResourceNotFoundException("ID not found: " + id);
+            throw new ResourceNotFoundException(ValidationMessage.RESOURCE_NOT_FOUND + id);
         }
 
         try{
@@ -65,7 +66,7 @@ public class ServiceOperationsImpl implements ServiceOperations {
             updateItemServiceOrder.deleteCustomer(id);
 
         } catch (Exception e){
-            throw new Exception("Error deleting service ID: " + id + " - " + e.getMessage());
+            throw new Exception(ValidationMessage.ERROR_DELETION_RECORD + id + " - " + e.getMessage());
         }
     }
 
@@ -73,7 +74,7 @@ public class ServiceOperationsImpl implements ServiceOperations {
     @Override
     public BusinessService update(BusinessService service) throws Exception {
         BusinessService aux = repository.findById(service.getUuid()).orElseThrow(
-                () -> new ResourceNotFoundException("Resource not found!"));
+                () -> new ResourceNotFoundException(ValidationMessage.RESOURCE_NOT_FOUND));
         aux.setDescription(service.getDescription());
         aux.setVl_service(service.getVl_service());
         aux.setCategory(service.getCategory());
@@ -82,7 +83,7 @@ public class ServiceOperationsImpl implements ServiceOperations {
             result = repository.save(aux);
             updateItemServiceOrder.updateService(result);
         } catch (Exception e){
-            throw new Exception("Error publishing record ID: " + result.getUuid());
+            throw new Exception(ValidationMessage.ERROR_INSERTING_RECORD + result.getUuid());
         }
         return result;
     }

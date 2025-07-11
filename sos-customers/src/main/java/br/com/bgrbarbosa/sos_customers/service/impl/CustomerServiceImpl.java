@@ -1,6 +1,6 @@
 package br.com.bgrbarbosa.sos_customers.service.impl;
 
-import br.com.bgrbarbosa.sos_customers.infra.DeleteCustomerServiceOrder;
+import br.com.bgrbarbosa.mensages.ValidationMessage;
 import br.com.bgrbarbosa.sos_customers.infra.UpdateCustomerServiceOrder;
 import br.com.bgrbarbosa.sos_customers.model.Customer;
 import br.com.bgrbarbosa.sos_customers.repository.CustomerRepository;
@@ -28,7 +28,7 @@ public class CustomerServiceImpl implements CustomerService{
             result = repository.save(customer);
             updateCustomerServiceOrder.updateCustomer(result);
         } catch (Exception e) {
-            throw new Exception("Error publishing record ID: " + result.getUuid());
+            throw new Exception(ValidationMessage.ERROR_INSERTING_RECORD + result.getUuid());
         }
         return result;
     }
@@ -41,27 +41,27 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     public Customer findById(UUID id) {
         return repository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("ID: " + id));
+                () -> new ResourceNotFoundException(ValidationMessage.RESOURCE_NOT_FOUND + id));
     }
 
     @Override
     public void delete(UUID id) throws Exception {
         if (!repository.existsById(id)) {
-            throw new ResourceNotFoundException("ID not found: " + id);
+            throw new ResourceNotFoundException(ValidationMessage.RESOURCE_NOT_FOUND + id);
         }
 
         try {
             repository.deleteById(id);
-            updateCustomerServiceOrder.deleteCustomer(id); // Envia a mensagem para o serviço de ordem de serviço
+            updateCustomerServiceOrder.deleteCustomer(id);
         } catch (Exception e) {
-            throw new Exception("Error deleting customer ID: " + id + " - " + e.getMessage());
+            throw new Exception(ValidationMessage.ERROR_DELETION_RECORD + id + " - " + e.getMessage());
         }
     }
 
     @Override
     public Customer update(Customer customer) throws Exception {
         Customer aux = repository.findById(customer.getUuid()).orElseThrow(
-                () -> new ResourceNotFoundException("Resource not found!"));
+                () -> new ResourceNotFoundException(ValidationMessage.RESOURCE_NOT_FOUND));
         aux.setEmail(customer.getEmail());
         aux.setName(customer.getName());
         aux.setCity(customer.getCity());
@@ -77,7 +77,7 @@ public class CustomerServiceImpl implements CustomerService{
             result = repository.save(aux);
             updateCustomerServiceOrder.updateCustomer(result);
         } catch (Exception e) {
-            throw new Exception("Error publishing record ID: " + result.getUuid());
+            throw new Exception(ValidationMessage.ERROR_INSERTING_RECORD + result.getUuid());
         }
         return result;
     }

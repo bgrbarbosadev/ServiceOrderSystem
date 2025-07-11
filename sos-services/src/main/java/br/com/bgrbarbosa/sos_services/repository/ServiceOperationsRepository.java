@@ -8,6 +8,5 @@ import java.util.UUID;
 
 public interface ServiceOperationsRepository extends JpaRepository<BusinessService, UUID> {
 
-    boolean existsByDescription(String description);
     BusinessService findByDescription(String description);
 }
