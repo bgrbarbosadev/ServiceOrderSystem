@@ -1,0 +1,257 @@
+networks:
+  sos-service-network:
+    driver: bridge
+
+services:
+################################################# Serviço do RabitMQ  #############################################################
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 30s
+      timeout: 20s
+      retries: 3
+    volumes:
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    networks:
+      - sos-service-network
+    ports:
+      - 15672:15672
+      - 5672:5672
+    expose:
+      - 15672:15672
+      - 5672:5672  
+      
+################################################# Serviço do Registry #############################################################    
+  service-discovery:
+    build:
+      context: .
+      dockerfile: ./sos-service-discovery/Dockerfile
+    container_name: service-discovery
+    ports:
+      - 8761:8761
+    networks:
+      - sos-service-network
+    restart: always
+
+################################################# Serviço do Gateway ##############################################################
+  gateway-zull:
+    build:
+      context: .
+      dockerfile: ./sos-gateway-zull/Dockerfile
+    container_name: gateway
+    ports:
+      - 8765:8765
+    environment:
+      - URL_SERVICE_DISCOVERY=http://service-discovery:8761/eureka
+      - JWT_SECRET=123456
+    depends_on:
+      service-discovery:
+        condition: service_healthy 
+    networks:
+      - sos-service-network
+    restart: always
+################################################# Serviço do Service Order ##############################################################   
+  service-order-db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DATABASE: sos-service-order-db
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
+    networks:
+      - sos-service-network
+    volumes:
+      - sos_service_order_data:/var/lib/sos_service_order
+      
+  service-order:
+    build:
+      context: .
+      dockerfile: ./sos-service-order/Dockerfile
+    container_name: service-order
+    environment:
+      - URL_SERVICE_DISCOVERY=http://service-discovery:8761/eureka
+      - DATASOURCE_URL=jdbc:postgresql://service-order-db:5432/sos-service-order-db
+      - DATASOURCE_USERNAME=postgres
+      - DATASOURCE_PASSWORD=123456
+      - JWT_SECRET=123456
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USERNAME=guest
+      - RABBITMQ_PASSWORD=guest
+      - RABBITMQ_CONNECTION_TIMEOUT=10000
+    depends_on:
+      service-discovery:
+        condition: service_healthy
+      gateway-zull:
+        condition: service_healthy      
+      rabbitmq:
+        condition: service_healthy    
+    networks:
+      - sos-service-network  
+    restart: always
+
+################################################# Serviço do Customer ##############################################################   
+  costumer-db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DATABASE: sos-customer-db
+    ports:
+      - 5433:5432
+    expose:
+      - 5432
+    networks:
+      - sos-service-network
+    volumes:
+      - sos_customer_data:/var/lib/sos_customer
+      
+  customer:
+    build:
+      context: .
+      dockerfile: ./sos-customers/Dockerfile
+    container_name: customer
+    environment:
+      - URL_SERVICE_DISCOVERY=http://service-discovery:8761/eureka
+      - DATASOURCE_URL=jdbc:postgresql://costumer-db:5432/sos-customer-db
+      - DATASOURCE_USERNAME=postgres
+      - DATASOURCE_PASSWORD=123456
+      - JWT_SECRET=123456
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USERNAME=guest
+      - RABBITMQ_PASSWORD=guest
+      - RABBITMQ_CONNECTION_TIMEOUT=10000
+    depends_on:
+      service-discovery:
+        condition: service_healthy
+      gateway-zull:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy    
+    networks:
+      - sos-service-network  
+    restart: always
+
+################################################# Serviço do Service ##############################################################   
+  service-db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DATABASE: sos-service-db
+    ports:
+      - 5434:5432
+    expose:
+      - 5432
+    networks:
+      - sos-service-network
+    volumes:
+      - sos_service_data:/var/lib/sos_service
+      
+  service:
+    build:
+      context: .
+      dockerfile: ./sos-services/Dockerfile
+    container_name: service
+    environment:
+      - URL_SERVICE_DISCOVERY=http://service-discovery:8761/eureka
+      - DATASOURCE_URL=jdbc:postgresql://service-db:5432/sos-service-db
+      - DATASOURCE_USERNAME=postgres
+      - DATASOURCE_PASSWORD=123456
+      - JWT_SECRET=123456
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USERNAME=guest
+      - RABBITMQ_PASSWORD=guest
+      - RABBITMQ_CONNECTION_TIMEOUT=10000
+    depends_on:
+      service-discovery:
+        condition: service_healthy
+      gateway-zull:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy    
+    networks:
+      - sos-service-network  
+    restart: always
+
+################################################# Serviço do User ##############################################################   
+  user-db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DATABASE: sos-user-db
+    ports:
+      - 5435:5432
+    expose:
+      - 5432
+    networks:
+      - sos-service-network
+    volumes:
+      - sos_user_data:/var/lib/sos_user
+      
+  user:
+    build:
+      context: .
+      dockerfile: ./sos-user/Dockerfile
+    container_name: user
+    environment:
+      - URL_SERVICE_DISCOVERY=http://service-discovery:8761/eureka
+      - DATASOURCE_URL=jdbc:postgresql://user-db:5432/sos-user-db
+      - DATASOURCE_USERNAME=postgres
+      - DATASOURCE_PASSWORD=123456
+      - JWT_SECRET=123456
+    depends_on:
+      service-discovery:
+        condition: service_healthy
+      gateway-zull:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy    
+    networks:
+      - sos-service-network  
+    restart: always
+
+################################################# Serviço do Oauth ##############################################################   
+    
+  oauth:
+    build:
+      context: .
+      dockerfile: ./sos-oauth/Dockerfile
+    container_name: oauth
+    environment:
+      - JWT_SECRET=123456
+      - OAUTH_CLIENT_NAME=myapp
+      - OAUTH_CLIENT_SECRET=myapp
+      - URL_SERVICE_DISCOVERY=http://service-discovery:8761/eureka
+    depends_on:
+      service-discovery:
+        condition: service_healthy
+      gateway-zull:
+        condition: service_healthy
+      user:
+        condition: service_healthy
+    networks:
+      - sos-service-network  
+    restart: always
+    
+         
+######################################################## Volumes usados nos dockers ##############################################    
+volumes:
+  rabbitmq_data:
+  sos_user_data:
+  sos_service_order_data:
+  sos_customer_data:
+  sos_service_data:

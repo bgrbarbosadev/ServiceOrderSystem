@@ -4,7 +4,7 @@ spring:
   application:
     name: sos-service
   datasource:
-    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/sos-service}
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/sos-service-db}
     username: ${DATASOURCE_USERNAME:postgres}
     password: ${DATASOURCE_PASSWORD:example}
     driver-class-name: org.postgresql.Driver
@@ -15,6 +15,12 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+    connection-timeout: ${RABBITMQ_CONNECTION_TIMEOUT:10000}
   output:
     ansi:
       enabled: ALWAYS
@@ -25,10 +31,6 @@ eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 
-# Configuração da fila RabbitMQ
-mq:
-  queues:
-    mq-customer-order-service: mq-item-service-order-service
 
 # Configuracoes de log
 logging:

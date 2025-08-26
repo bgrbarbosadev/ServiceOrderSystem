@@ -18,7 +18,7 @@ public class UpdateCustomerAndService {
 
     private final CustomerRepository customerRepository;
 
-    @RabbitListener(queues = "${mq-customer-order-service}")
+    @RabbitListener(queues = "mq-customer-order-service")
     public void updateCustomer(@Payload String payload){
         try {
             var mapper = new ObjectMapper();
@@ -31,7 +31,7 @@ public class UpdateCustomerAndService {
         }
     }
 
-    @RabbitListener(queues = "${mq-customer-order-service}")
+    @RabbitListener(queues = "mq-customer-order-service")
     public void deleteCustomer(@Payload String idString){
         String cleanIdString = idString.replace("\"", "");
         UUID id = UUID.fromString(cleanIdString);

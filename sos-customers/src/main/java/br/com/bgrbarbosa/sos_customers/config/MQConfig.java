@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Primary;
 @Configuration
 public class MQConfig {
 
-    @Value("${mq-customer-order-service}")
+    @Value("mq-customer-order-service")
     private String updateCustomerServiceOrder;
 
     @Bean

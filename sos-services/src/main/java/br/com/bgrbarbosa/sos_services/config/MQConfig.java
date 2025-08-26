@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MQConfig {
 
-    @Value("${mq-item-service-order-service}")
+    @Value("mq-item-service-order-service")
     private String updateItemServiceOrder;
 
     @Bean

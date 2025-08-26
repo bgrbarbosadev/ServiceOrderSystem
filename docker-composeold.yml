@@ -1,0 +1,18 @@
+version: '3.9'
+
+networks:
+  private_network:
+    driver: bridge
+  public_network:
+    driver: bridge
+
+services:
+  sos-service-discovery:
+    build: ./sos-service-discovery
+    container_name: sos-service-discovery
+    ports:
+      - '8761:8761'
+    restart: always
+    networks:
+      - public_network
+
