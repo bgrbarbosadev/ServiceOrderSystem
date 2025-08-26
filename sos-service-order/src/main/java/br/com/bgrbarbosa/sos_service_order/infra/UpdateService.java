@@ -20,7 +20,7 @@ public class UpdateService {
 
     private final ServiceRepository repository;
 
-    @RabbitListener(queues = "${mq-item-service-order-service}")
+    @RabbitListener(queues = "mq-item-service-order-service")
     public void updateService(@Payload String payload){
         try {
             var mapper = new ObjectMapper();
@@ -33,7 +33,7 @@ public class UpdateService {
         }
     }
 
-    @RabbitListener(queues = "${mq-item-service-order-service}")
+    @RabbitListener(queues = "mq-item-service-order-service")
     public void deleteCustomer(@Payload String idString){
         String cleanIdString = idString.replace("\"", "");
         UUID id = UUID.fromString(cleanIdString);
